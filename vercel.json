@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "netflix-backend": {
+      "root": "netflix-backend",
+      "framework": "express"
+    },
+    "netflix-frontend": {
+      "root": "netflix-frontend",
+      "framework": "vite"
+    }
+  },
+  "rewrites": []
+}
