@@ -1,14 +1,23 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": {
-    "netflix-backend": {
+  "services": [
+    {
       "root": "netflix-backend",
       "framework": "express"
     },
-    "netflix-frontend": {
+    {
       "root": "netflix-frontend",
       "framework": "vite"
     }
-  },
-  "rewrites": []
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/netflix-backend/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/netflix-frontend/$1"
+    }
+  ]
 }
