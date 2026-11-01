@@ -1,23 +1,23 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": [
+  "version": 2,
+  "builds": [
     {
-      "root": "netflix-backend",
-      "framework": "express"
+      "src": "netflix-frontend/package.json",
+      "use": "@vercel/vite"
     },
     {
-      "root": "netflix-frontend",
-      "framework": "vite"
+      "src": "netflix-backend/index.js",
+      "use": "@vercel/node"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/netflix-backend/$1"
+      "src": "/api/(.*)",
+      "dest": "netflix-backend/index.js"
     },
     {
-      "source": "/(.*)",
-      "destination": "/netflix-frontend/$1"
+      "src": "/(.*)",
+      "dest": "netflix-frontend/$1"
     }
   ]
 }
