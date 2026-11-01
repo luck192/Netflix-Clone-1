@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png'
 import { useNavigate } from 'react-router-dom'
 import netflix_spinner from '../../assets/netflix_spinner.gif'
 import {toast} from 'react-toastify'
+import { useEffect } from 'react'
 
 const Login = () => {
   const[currState , setcurrState] = useState('signup');
@@ -12,7 +13,11 @@ const Login = () => {
   const[password, setpassword] = useState('');
   const[loading, setloading]=useState(false);
   const navigate = useNavigate();
- 
+  
+  useEffect(()=>{
+  localStorage.removeItem("token");
+  },[])
+
   const handleSubmit = async (e)=>{
     e.preventDefault();
     setloading(true);
@@ -24,6 +29,7 @@ const Login = () => {
         },
         body:JSON.stringify({username,email,password}),
       })
+
       if(currState === "signup"){
 
          if(response.ok){
@@ -35,7 +41,8 @@ const Login = () => {
       }
       else{
           if(response.ok){
-           navigate('/');
+           localStorage.setItem("token", "true"); 
+           navigate('/home');
          }
          else{
             toast.error("Invalid credentials");

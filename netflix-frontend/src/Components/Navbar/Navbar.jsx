@@ -10,7 +10,10 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   const navigate = useNavigate();
-
+  const handleLogout = ()=>{
+    localStorage.removeItem("token");
+    navigate('/');
+  }
   const navRef = useRef();
   useEffect(()=>{
     window.addEventListener('scroll', ()=>{
@@ -26,7 +29,7 @@ const Navbar = () => {
       <div className="navbar-left">
         <img src={logo} alt="logo" />
         <ul>
-            <Link className='homebutton' to={'/'}> Home</Link>
+            <Link className='homebutton' to={'/home'}> Home</Link>
             <li>TV Shows</li>
             <li>New & Popular</li>
             <li>My List</li>
@@ -42,7 +45,7 @@ const Navbar = () => {
               <img src={profile_img} alt="icon" className='profile' />
              <img src={dropDown_icon} alt="icon" />
              <div className="dropdown">
-                <p onClick={()=> {navigate('/loginpage')}}>signout Of Netflix</p>
+                <p onClick={handleLogout}>signout Of Netflix</p>
              </div>
         </div>
       </div>
