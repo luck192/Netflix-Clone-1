@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
     setloading(true);
     try{ 
-      const response = await fetch(`http://localhost:3000/api/${currState}`,{
+      const response = await fetch(`https://netflix-clone-1-backend.onrender.com/api/${currState}`,{
         method:'POST',
         headers:{
           'content-type':'application/json',
